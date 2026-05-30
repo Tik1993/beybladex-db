@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('ratchet_id')->constrained('ratchets')->cascadeOnDelete();
             $table->foreignId('bit_id')->constrained('bits')->cascadeOnDelete();
             $table->string('type')->nullable();
+            $table->string('manufacturer');
             $table->timestamps();
         });
     }
