@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use App\Models\Blade;
 use App\Models\Ratchet;
 use App\Models\Bit;
-use App\Models\User;
-
+use App\Models\CxLockChip;
+use App\Models\CxOverBlade;
+use App\Models\CxMetalBlade;
+use App\Models\CxAuxiliaryBlade;
 
 class UserCombination extends Model
 {
@@ -16,13 +19,23 @@ class UserCombination extends Model
 
     protected $fillable = [
         'user_id',
+        'name',
+        'type',
         'blade_id',
         'ratchet_id',
         'bit_id',
-        'name',
+        'cx_lock_chip_id',
+        'cx_over_blade_id',
+        'cx_metal_blade_id',
+        'cx_auxiliary_blade_id',
         'notes',
     ];
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function blade()
     {
         return $this->belongsTo(Blade::class);
@@ -32,14 +45,29 @@ class UserCombination extends Model
     {
         return $this->belongsTo(Ratchet::class);
     }
-    
+
     public function bit()
     {
         return $this->belongsTo(Bit::class);
     }
 
-    public function user()
+    public function cxLockChip()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(CxLockChip::class, 'cx_lock_chip_id');
+    }
+
+    public function cxOverBlade()
+    {
+        return $this->belongsTo(CxOverBlade::class, 'cx_over_blade_id');
+    }
+
+    public function cxMetalBlade()
+    {
+        return $this->belongsTo(CxMetalBlade::class, 'cx_metal_blade_id');
+    }
+
+    public function cxAuxiliaryBlade()
+    {
+        return $this->belongsTo(CxAuxiliaryBlade::class, 'cx_auxiliary_blade_id');
     }
 }

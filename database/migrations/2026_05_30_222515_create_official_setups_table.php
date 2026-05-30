@@ -14,11 +14,18 @@ return new class extends Migration
         Schema::create('official_setups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('blade_id')->constrained('blades')->cascadeOnDelete();
+            $table->string('manufacturer');
+            $table->enum('type', ['BX', 'UX', 'CX']);
+
+            $table->foreignId('blade_id')->nullable()->constrained('blades')->nullOnDelete();
             $table->foreignId('ratchet_id')->constrained('ratchets')->cascadeOnDelete();
             $table->foreignId('bit_id')->constrained('bits')->cascadeOnDelete();
-            $table->string('type')->nullable();
-            $table->string('manufacturer');
+
+            $table->foreignId('cx_lock_chip_id')->nullable()->constrained('cx_lock_chips')->nullOnDelete();
+            $table->foreignId('cx_over_blade_id')->nullable()->constrained('cx_over_blades')->nullOnDelete();
+            $table->foreignId('cx_metal_blade_id')->nullable()->constrained('cx_metal_blades')->nullOnDelete();
+            $table->foreignId('cx_auxiliary_blade_id')->nullable()->constrained('cx_auxiliary_blades')->nullOnDelete();
+
             $table->timestamps();
         });
     }

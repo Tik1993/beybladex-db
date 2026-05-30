@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_combinations', function (Blueprint $table) {
+        Schema::create('user_owned_cx_lock_chips', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('blade_id')->constrained('blades')->cascadeOnDelete();
-            $table->foreignId('ratchet_id')->constrained('ratchets')->cascadeOnDelete();
-            $table->foreignId('bit_id')->constrained('bits')->cascadeOnDelete();
-            $table->string('name');
+            $table->foreignId('cx_lock_chip_id')->constrained('cx_lock_chips')->cascadeOnDelete();
+            $table->integer('quantity')->default(1);
             $table->text('notes')->nullable();
-            $table->boolean('is_official')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_combinations');
+        Schema::dropIfExists('user_owned_lock_chips');
     }
 };
