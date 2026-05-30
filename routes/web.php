@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/blades', [BladeController::class, 'index']);
+Route::view('/official-setups/new', 'app');
