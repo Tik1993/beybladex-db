@@ -19,14 +19,14 @@ class BitController extends Controller
 
     public function store(Request $request)
     {
-        $bit = Bit::create($request->only(['name', 'img_url', 'color']));
+        $bit = Bit::create($request->only(['name', 'short_name','img_url', 'color']));
 
         return response()->json($bit, 201);
     }
 
     public function update(Request $request, Bit $bit)
     {
-        $bit->update($request->only(['name', 'img_url', 'color']));
+        $bit->update($request->only(['name', 'short_name','img_url', 'color']));
 
         return response()->json($bit);
     }

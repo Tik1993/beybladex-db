@@ -14,6 +14,7 @@ class Bit extends Model
 
     protected $fillable = [
         'name',
+        "short_name",
         'img_url',
         'color',
     ];
