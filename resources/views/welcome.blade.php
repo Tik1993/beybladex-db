@@ -167,7 +167,13 @@
                     <div class="badge">{{ $setup->type }}</div>
                     <h2>{{ $setup->name }}</h2>
                     <div class="meta">{{ $setup->manufacturer }}</div>
-
+                    <div class="image-box">
+                        @if ($setup->image_url)
+                            <img src="{{ $setup->image_url }}" alt="{{ $setup->name }}" class="main-image">
+                        @else
+                            <div class="empty-image"></div>
+                        @endif
+                    </div>
                     @if ($setup->type === 'CX')
                         <div class="image-row">
                             <div class="image-box">
