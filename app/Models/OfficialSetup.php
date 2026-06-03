@@ -18,6 +18,7 @@ class OfficialSetup extends Model
 
     protected $fillable = [
         'name',
+        'image_url',
         'manufacturer',
         'type',
         'blade_id',

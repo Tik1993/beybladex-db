@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('official_setups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image_url')->nullable();
             $table->string('manufacturer');
             $table->enum('type', ['BX', 'UX', 'CX']);
 
