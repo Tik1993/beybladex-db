@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import OfficialSetupForm from "./components/OfficialSetupForm";
+import Main from "./components/main";
 
 ReactDOM.createRoot(document.getElementById("app")).render(
     <React.StrictMode>
-        <OfficialSetupForm />
+        <Main />
     </React.StrictMode>,
 );
