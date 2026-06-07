@@ -9,7 +9,11 @@ class RatchetController extends Controller
 {
     public function index()
     {
-        return response()->json(Ratchet::all());
+        return response()->json(
+            Ratchet::with(
+                ['officialSetups']
+            )->get()
+        );
     }
 
     public function show(Ratchet $ratchet)

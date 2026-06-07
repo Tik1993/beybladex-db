@@ -9,7 +9,11 @@ class BladeController extends Controller
 {
     public function index()
     {
-        return response()->json(Blade::all());
+        return response()->json(
+            Blade::with(
+                ['officialSetups']
+            )->get()
+        );
     }
 
     public function show(Blade $blade)

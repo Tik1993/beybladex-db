@@ -9,7 +9,11 @@ class BitController extends Controller
 {
     public function index()
     {
-        return response()->json(Bit::all());
+        return response()->json(
+            Bit::with(
+                ['officialSetups']
+            )->get()
+        );
     }
 
     public function show(Bit $bit)

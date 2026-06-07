@@ -9,7 +9,11 @@ class CxLockChipController extends Controller
 {
     public function index()
     {
-        return response()->json(CxLockChip::all());
+        return response()->json(
+            CxLockChip::with(
+                ['officialSetups']
+            )->get()
+        );
     }
 
     public function show(CxLockChip $cxLockChip)

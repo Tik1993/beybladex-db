@@ -9,7 +9,11 @@ class CxAuxiliaryBladeController extends Controller
 {
     public function index()
     {
-        return response()->json(CxAuxiliaryBlade::all());
+        return response()->json(
+            CxAuxiliaryBlade::with(
+                ['officialSetups']
+            )->get()
+        );
     }
 
     public function show(CxAuxiliaryBlade $cxAuxiliaryBlade)

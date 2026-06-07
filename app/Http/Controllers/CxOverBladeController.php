@@ -9,7 +9,11 @@ class CxOverBladeController extends Controller
 {
     public function index()
     {
-        return response()->json(CxOverBlade::all());
+        return response()->json(
+            CxOverBlade::with(
+                ['officialSetups']
+            )->get()
+        );
     }
 
     public function show(CxOverBlade $cxOverBlade)

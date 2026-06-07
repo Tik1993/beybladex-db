@@ -9,7 +9,11 @@ class CxMetalBladeController extends Controller
 {
     public function index()
     {
-        return response()->json(CxMetalBlade::all());
+        return response()->json(
+            CxMetalBlade::with(
+                ['officialSetups']
+            )->get()
+        );
     }
 
     public function show(CxMetalBlade $cxMetalBlade)
