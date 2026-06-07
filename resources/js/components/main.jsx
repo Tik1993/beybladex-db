@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState, useDeferredValue } from "react";
+import Login from "./login";
 
 const TOP_TABS = [
     {
@@ -33,13 +34,14 @@ const TOP_TABS = [
 
 const SETUP_SUBTAGS = ["All", "BX", "UX", "CX"];
 
-export default function Main() {
+export default function Main({ user, setUser }) {
     const [activeTab, setActiveTab] = useState("official-setups");
     const [activeSubTag, setActiveSubTag] = useState("All");
     const [searchTerm, setSearchTerm] = useState("");
     const [data, setData] = useState({});
     const [loading, setLoading] = useState({});
     const [error, setError] = useState({});
+    const [showLogin, setShowLogin] = useState(false);
 
     const deferredSearch = useDeferredValue(searchTerm);
 
@@ -112,22 +114,57 @@ export default function Main() {
     const activeTabLabel =
         TOP_TABS.find((t) => t.key === activeTab)?.label ?? "";
 
+    const handleLogout = async () => {
+        await fetch("/api/logout", {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            credentials: "include",
+        });
+        setUser(null);
+    };
+
+    if (showLogin && !user) {
+        return (
+            <Login
+                setUser={(u) => {
+                    setUser(u);
+                    setShowLogin(false);
+                }}
+                onBack={() => setShowLogin(false)}
+            />
+        );
+    }
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100">
+            {/* Navbar */}
+            <nav className="border-b border-slate-800 bg-slate-950 px-6 py-4 flex items-center justify-between">
+                <p className="text-sm uppercase tracking-[0.3em] text-cyan-300">
+                    Beyblade DB
+                </p>
+                {user ? (
+                    <div className="flex items-center gap-4">
+                        <span className="text-sm text-slate-300">
+                            {user.name}
+                        </span>
+                        <button
+                            type="button"
+                            onClick={handleLogout}
+                            className="rounded-full border border-slate-700 px-4 py-1.5 text-sm text-slate-400 hover:border-slate-500 transition"
+                        >
+                            Logout
+                        </button>
+                    </div>
+                ) : (
+                    <button
+                        type="button"
+                        onClick={() => setShowLogin(true)}
+                        className="rounded-full border border-slate-700 px-4 py-1.5 text-sm text-slate-400 hover:border-slate-500 transition"
+                    >
+                        Login
+                    </button>
+                )}
+            </nav>
             <div className="mx-auto max-w-7xl px-6 py-10">
-                <header className="mb-8">
-                    <p className="text-sm uppercase tracking-[0.3em] text-cyan-300">
-                        Beyblade DB
-                    </p>
-                    <h1 className="mt-2 text-4xl font-bold text-white">
-                        Parts &amp; Setups
-                    </h1>
-                    <p className="mt-3 max-w-2xl text-slate-300">
-                        Search official setups and part catalogs by type, name,
-                        and related components.
-                    </p>
-                </header>
-
                 <div className="mb-6 flex flex-wrap gap-2">
                     {TOP_TABS.map((tab) => (
                         <button
