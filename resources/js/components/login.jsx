@@ -81,7 +81,7 @@ export default function Login({ setUser, onBack }) {
                         </div>
                     )}
 
-                    {mode === "register" && (
+                    {/* {mode === "register" && (
                         <input
                             name="name"
                             type="text"
@@ -90,7 +90,7 @@ export default function Login({ setUser, onBack }) {
                             onChange={handleChange}
                             className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none focus:border-cyan-400"
                         />
-                    )}
+                    )} */}
 
                     <input
                         name="email"
@@ -134,7 +134,7 @@ export default function Login({ setUser, onBack }) {
                               : "Register"}
                     </button>
 
-                    <p className="text-center text-sm text-slate-400">
+                    {/* <p className="text-center text-sm text-slate-400">
                         {mode === "login" ? "No account?" : "Already have one?"}{" "}
                         <button
                             type="button"
@@ -145,7 +145,7 @@ export default function Login({ setUser, onBack }) {
                         >
                             {mode === "login" ? "Register" : "Login"}
                         </button>
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </div>
