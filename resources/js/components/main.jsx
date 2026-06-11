@@ -6,7 +6,7 @@ import React, {
     useRef,
 } from "react";
 import Login from "./login";
-import Combos from "./combos";
+import Combos from "./Combos";
 
 const TOP_TABS = [
     {
