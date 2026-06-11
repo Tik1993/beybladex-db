@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useState, useDeferredValue } from "react";
+import React, {
+    useEffect,
+    useMemo,
+    useState,
+    useDeferredValue,
+    useRef,
+} from "react";
 import Login from "./login";
 
 const TOP_TABS = [
@@ -108,6 +114,7 @@ export default function Main({ user, setUser }) {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState({});
     const [error, setError] = useState({});
+    const fetchedTabs = useRef(new Set());
 
     const [collection, setCollection] = useState(createEmptyCollection());
 
@@ -155,7 +162,7 @@ export default function Main({ user, setUser }) {
         if (mainTab !== "catalog") return;
 
         const tab = TOP_TABS.find((t) => t.key === activeTab);
-        if (!tab || data[activeTab] !== undefined) return;
+        if (!tab || fetchedTabs.current.has(activeTab)) return;
 
         setLoading((prev) => ({ ...prev, [activeTab]: true }));
 
@@ -171,7 +178,7 @@ export default function Main({ user, setUser }) {
             .finally(() =>
                 setLoading((prev) => ({ ...prev, [activeTab]: false })),
             );
-    }, [mainTab, activeTab, data]);
+    }, [mainTab, activeTab]);
 
     const handleMainTabChange = (nextTab) => {
         setMainTab(nextTab);
