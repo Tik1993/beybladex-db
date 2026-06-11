@@ -6,6 +6,7 @@ import React, {
     useRef,
 } from "react";
 import Login from "./login";
+import Combos from "./combos";
 
 const TOP_TABS = [
     {
@@ -39,6 +40,10 @@ const TOP_TABS = [
 ];
 
 const PART_TABS = TOP_TABS.filter((tab) => tab.key !== "official-setups");
+const LIBRARY_TABS = [
+    ...PART_TABS,
+    { key: "combinations", label: "My Combos" },
+];
 
 const SETUP_SUBTAGS = ["All", "BX", "UX", "CX"];
 
@@ -105,7 +110,7 @@ export default function Main({ user, setUser }) {
     const [libraryTab, setLibraryTab] = useState("blades");
 
     const activeTab = mainTab === "catalog" ? catalogTab : libraryTab;
-    const activeTabs = mainTab === "catalog" ? TOP_TABS : PART_TABS;
+    const activeTabs = mainTab === "catalog" ? TOP_TABS : LIBRARY_TABS;
 
     const [activeSubTag, setActiveSubTag] = useState("All");
     const [searchTerm, setSearchTerm] = useState("");
@@ -117,6 +122,7 @@ export default function Main({ user, setUser }) {
     const fetchedTabs = useRef(new Set());
 
     const [collection, setCollection] = useState(createEmptyCollection());
+    const [combos, setCombos] = useState([]);
 
     useEffect(() => {
         if (!user) {
@@ -156,6 +162,14 @@ export default function Main({ user, setUser }) {
             .catch(() => {
                 setCollection(createEmptyCollection());
             });
+
+        // fetch combos
+        fetch("/api/user/combinations", {
+            headers: { Accept: "application/json" },
+            credentials: "include",
+        })
+            .then((res) => res.json())
+            .then((data) => setCombos(data));
     }, [user]);
 
     useEffect(() => {
@@ -359,12 +373,21 @@ export default function Main({ user, setUser }) {
                         onRemove={handleRemove}
                     />
                 ) : (
-                    <LibraryPanel
-                        activeTab={activeTab}
-                        user={user}
-                        items={filteredLibrary}
-                        onRemove={handleRemove}
-                    />
+                    mainTab === "library" &&
+                    (activeTab === "combinations" ? (
+                        <Combos
+                            collection={collection}
+                            combos={combos}
+                            setCombos={setCombos}
+                        />
+                    ) : (
+                        <LibraryPanel
+                            activeTab={activeTab}
+                            user={user}
+                            items={filteredLibrary}
+                            onRemove={handleRemove}
+                        />
+                    ))
                 )}
             </div>
         </div>

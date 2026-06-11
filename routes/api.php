@@ -17,6 +17,7 @@ use App\Http\Controllers\UserOwnedCxLockChipController;
 use App\Http\Controllers\UserOwnedCxOverBladeController;
 use App\Http\Controllers\UserOwnedCxMetalBladeController;
 use App\Http\Controllers\UserOwnedCxAuxiliaryBladeController;
+use App\Http\Controllers\UserCombinationController;
 
 Route::apiResource('blades', BladeController::class);
 Route::apiResource('ratchets', RatchetController::class);
@@ -58,4 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/cx-auxiliary-blades',        [UserOwnedCxAuxiliaryBladeController::class, 'index']);
     Route::post('/user/cx-auxiliary-blades',       [UserOwnedCxAuxiliaryBladeController::class, 'store']);
     Route::delete('/user/cx-auxiliary-blades/{id}',[UserOwnedCxAuxiliaryBladeController::class, 'destroy']);
+
+    Route::get('/user/combinations',        [UserCombinationController::class, 'index']);
+    Route::post('/user/combinations',       [UserCombinationController::class, 'store']);
+    Route::put('/user/combinations/{id}',   [UserCombinationController::class, 'update']);
+    Route::delete('/user/combinations/{id}',[UserCombinationController::class, 'destroy']);
 });
