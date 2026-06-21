@@ -20,6 +20,13 @@ import {
     getOwnedPart,
     buildSearchableText,
 } from "../utils/collection";
+import Navbar from "./shared/Navbar";
+import ModeTabs from "./shared/ModeTabs";
+import TabRow from "./shared/TabRow";
+import SubTags from "./shared/SubTags";
+import SearchBar from "./shared/SearchBar";
+import SectionTitle from "./shared/SectionTile";
+import PartSlot from "./shared/PartSlot";
 
 export default function Main({ user, setUser }) {
     const [showLogin, setShowLogin] = useState(false);
@@ -313,129 +320,6 @@ export default function Main({ user, setUser }) {
     );
 }
 
-function Navbar({ user, onLogin, onLogout }) {
-    return (
-        <nav className="border-b border-slate-800 bg-slate-950 px-6 py-4">
-            <div className="mx-auto flex max-w-7xl items-center justify-between">
-                <p className="text-sm uppercase tracking-[0.3em] text-cyan-300">
-                    Beyblade DB
-                </p>
-
-                {user ? (
-                    <div className="flex items-center gap-4">
-                        <span className="text-sm text-slate-300">
-                            {user.name}
-                        </span>
-                        <button
-                            type="button"
-                            onClick={onLogout}
-                            className="rounded-full border border-slate-700 px-4 py-1.5 text-sm text-slate-400 transition hover:border-slate-500"
-                        >
-                            Logout
-                        </button>
-                    </div>
-                ) : (
-                    <button
-                        type="button"
-                        onClick={onLogin}
-                        className="rounded-full border border-slate-700 px-4 py-1.5 text-sm text-slate-400 transition hover:border-slate-500"
-                    >
-                        Login
-                    </button>
-                )}
-            </div>
-        </nav>
-    );
-}
-
-function ModeTabs({ mainTab, onChange, user }) {
-    return (
-        <div className="mb-8 flex gap-2 border-b border-slate-800 pb-4">
-            <button
-                type="button"
-                onClick={() => onChange("catalog")}
-                className={`rounded-full px-5 py-2 text-sm font-medium transition ${
-                    mainTab === "catalog"
-                        ? "bg-cyan-400 text-slate-950"
-                        : "text-slate-400 hover:text-white"
-                }`}
-            >
-                BeybladeX Catalog
-            </button>
-
-            {user && (
-                <button
-                    type="button"
-                    onClick={() => onChange("library")}
-                    className={`rounded-full px-5 py-2 text-sm font-medium transition ${
-                        mainTab === "library"
-                            ? "bg-cyan-400 text-slate-950"
-                            : "text-slate-400 hover:text-white"
-                    }`}
-                >
-                    Your Library
-                </button>
-            )}
-        </div>
-    );
-}
-
-function TabRow({ tabs, activeTab, onChange }) {
-    return (
-        <div className="mb-6 flex flex-wrap gap-2">
-            {tabs.map((tab) => (
-                <button
-                    key={tab.key}
-                    type="button"
-                    onClick={() => onChange(tab.key)}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                        activeTab === tab.key
-                            ? "bg-cyan-400 text-slate-950"
-                            : "bg-slate-800 text-slate-300 hover:bg-slate-700"
-                    }`}
-                >
-                    {tab.label}
-                </button>
-            ))}
-        </div>
-    );
-}
-
-function SubTags({ activeSubTag, onChange }) {
-    return (
-        <div className="mb-6 flex flex-wrap gap-2">
-            {SETUP_SUBTAGS.map((tag) => (
-                <button
-                    key={tag}
-                    type="button"
-                    onClick={() => onChange(tag)}
-                    className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
-                        activeSubTag === tag
-                            ? "border-cyan-400 bg-cyan-400/10 text-cyan-300"
-                            : "border-slate-700 text-slate-400 hover:border-slate-500"
-                    }`}
-                >
-                    {tag}
-                </button>
-            ))}
-        </div>
-    );
-}
-
-function SearchBar({ value, onChange, placeholder }) {
-    return (
-        <div className="mb-6">
-            <input
-                type="text"
-                value={value}
-                onChange={(e) => onChange(e.target.value)}
-                placeholder={placeholder}
-                className="w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400 lg:max-w-xl"
-            />
-        </div>
-    );
-}
-
 function CatalogPanel({
     activeTab,
     loading,
@@ -713,75 +597,6 @@ function PartCard({ item, user, ownedRecord, onAdd, onRemove, isLibrary }) {
                         </div>
                     )}
             </div>
-        </div>
-    );
-}
-
-function PartSlot({ title, item }) {
-    const [open, setOpen] = useState(false);
-
-    return (
-        <div className="rounded-2xl border border-slate-800 bg-slate-950">
-            <button
-                type="button"
-                onClick={() => setOpen((prev) => !prev)}
-                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
-            >
-                <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
-                        {title}
-                    </p>
-                    <p className="mt-0.5 font-semibold text-white">
-                        {item?.short_name || item?.name || "Not set"}
-                    </p>
-                    {item?.color && (
-                        <p className="text-xs text-slate-500">{item.color}</p>
-                    )}
-                </div>
-
-                <div className="flex shrink-0 items-center gap-2">
-                    {item?.img_url && (
-                        <img
-                            src={item.img_url}
-                            alt={item.name || title}
-                            className="h-10 w-10 rounded-lg object-contain"
-                        />
-                    )}
-                    <span
-                        className={`text-slate-500 transition-transform duration-200 ${
-                            open ? "rotate-180" : ""
-                        }`}
-                    >
-                        ▾
-                    </span>
-                </div>
-            </button>
-
-            {open && (
-                <div className="border-t border-slate-800 bg-slate-900 px-4 pb-4 pt-3">
-                    {item?.img_url ? (
-                        <img
-                            src={item.img_url}
-                            alt={item.name || title}
-                            className="h-36 w-full rounded-xl object-contain"
-                        />
-                    ) : (
-                        <div className="flex h-36 items-center justify-center text-sm text-slate-500">
-                            No image
-                        </div>
-                    )}
-                </div>
-            )}
-        </div>
-    );
-}
-
-function SectionTitle({ title }) {
-    return (
-        <div className="pt-2">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-400">
-                {title}
-            </h3>
         </div>
     );
 }
