@@ -6,14 +6,11 @@ import React, {
     useRef,
 } from "react";
 import Login from "./auth/login";
-import Combos from "./library/Combos";
 import {
     TOP_TABS,
     PART_TABS,
     LIBRARY_TABS,
-    SETUP_SUBTAGS,
     PART_KEY_MAP,
-    OWNED_PART_RELATION_MAP,
 } from "../constants/tabs";
 import {
     createEmptyCollection,
@@ -27,6 +24,7 @@ import SubTags from "./shared/SubTags";
 import SearchBar from "./shared/SearchBar";
 import CatalogPanel from "./catalog/CatalogPanel";
 import LibraryPanel from "./library/LibraryPanel";
+import Combos from "./library/Combos";
 
 export default function Main({ user, setUser }) {
     const [showLogin, setShowLogin] = useState(false);
