@@ -187,22 +187,9 @@ export default function Main({ user, setUser }) {
 
             if (!term) return true;
 
-            const searchableText = buildSearchableText([
-                item.name,
-                item.short_name,
-                item.manufacturer,
-                item.type,
-                item.color,
-                item.blade?.name,
-                item.ratchet?.name,
-                item.bit?.name,
-                item.cx_lock_chip?.name,
-                item.cx_over_blade?.name,
-                item.cx_metal_blade?.name,
-                item.cx_auxiliary_blade?.name,
-                ...(item.official_setups?.map((s) => s.name) ?? []),
-                ...(item.official_setups?.map((s) => s.manufacturer) ?? []),
-            ]);
+            const searchableText = item.short_name
+                ? buildSearchableText([item.short_name])
+                : buildSearchableText([item.name]);
 
             return searchableText.includes(term);
         });
