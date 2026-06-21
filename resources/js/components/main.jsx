@@ -5,8 +5,8 @@ import React, {
     useDeferredValue,
     useRef,
 } from "react";
-import Login from "./login";
-import Combos from "./Combos";
+import Login from "./auth/login";
+import Combos from "./library/Combos";
 import {
     TOP_TABS,
     PART_TABS,
