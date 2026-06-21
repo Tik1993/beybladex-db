@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('type', ['BX', 'UX', 'CX']);
 
             $table->foreignId('blade_id')->nullable()->constrained('blades')->nullOnDelete();
-            $table->foreignId('ratchet_id')->constrained('ratchets')->cascadeOnDelete();
+            $table->foreignId('ratchet_id')->nullable()->constrained('ratchets')->cascadeOnDelete();
             $table->foreignId('bit_id')->constrained('bits')->cascadeOnDelete();
 
             $table->foreignId('cx_lock_chip_id')->nullable()->constrained('cx_lock_chips')->nullOnDelete();
