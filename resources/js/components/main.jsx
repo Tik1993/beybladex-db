@@ -15,41 +15,11 @@ import {
     PART_KEY_MAP,
     OWNED_PART_RELATION_MAP,
 } from "../constants/tabs";
-
-function createEmptyCollection() {
-    return {
-        blades: [],
-        ratchets: [],
-        bits: [],
-        "cx-lock-chips": [],
-        "cx-over-blades": [],
-        "cx-metal-blades": [],
-        "cx-auxiliary-blades": [],
-    };
-}
-
-function getOwnedPart(record, tabKey) {
-    const relationKey = OWNED_PART_RELATION_MAP[tabKey];
-
-    if (relationKey && record?.[relationKey]) {
-        return record[relationKey];
-    }
-
-    return (
-        Object.values(record || {}).find(
-            (value) =>
-                value &&
-                typeof value === "object" &&
-                !Array.isArray(value) &&
-                value.id &&
-                (value.name || value.short_name),
-        ) ?? null
-    );
-}
-
-function buildSearchableText(values) {
-    return values.filter(Boolean).join(" ").toLowerCase();
-}
+import {
+    createEmptyCollection,
+    getOwnedPart,
+    buildSearchableText,
+} from "../utils/collection";
 
 export default function Main({ user, setUser }) {
     const [showLogin, setShowLogin] = useState(false);
