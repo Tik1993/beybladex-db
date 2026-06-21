@@ -102,6 +102,8 @@ export default function Main({ user, setUser }) {
         const tab = TOP_TABS.find((t) => t.key === activeTab);
         if (!tab || fetchedTabs.current.has(activeTab)) return;
 
+        fetchedTabs.current.add(activeTab);
+
         setLoading((prev) => ({ ...prev, [activeTab]: true }));
 
         fetch(tab.endpoint, { headers: { Accept: "application/json" } })
