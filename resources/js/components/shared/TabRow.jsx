@@ -6,7 +6,7 @@ export default function TabRow({ tabs, activeTab, onChange }) {
                     key={tab.key}
                     type="button"
                     onClick={() => onChange(tab.key)}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                    className={`rounded-full px-3 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium transition ${
                         activeTab === tab.key
                             ? "bg-cyan-400 text-slate-950"
                             : "bg-slate-800 text-slate-300 hover:bg-slate-700"

@@ -239,41 +239,45 @@ export default function Main({ user, setUser }) {
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100">
-            <Navbar
-                user={user}
-                onLogin={() => setShowLogin(true)}
-                onLogout={handleLogout}
-            />
-
-            <div className="mx-auto max-w-7xl px-6 py-10">
-                <ModeTabs
-                    mainTab={mainTab}
-                    onChange={handleMainTabChange}
+            <div className="sticky top-0 z-50 bg-slate-950/95 backdrop-blur">
+                <Navbar
                     user={user}
+                    onLogin={() => setShowLogin(true)}
+                    onLogout={handleLogout}
                 />
-
-                <TabRow
-                    tabs={activeTabs}
-                    activeTab={activeTab}
-                    onChange={(key) => {
-                        if (mainTab === "catalog") setCatalogTab(key);
-                        else setLibraryTab(key);
-                    }}
-                />
-
-                {mainTab === "catalog" && activeTab === "official-setups" && (
-                    <SubTags
-                        activeSubTag={activeSubTag}
-                        onChange={setActiveSubTag}
+                <div className="mx-auto max-w-7xl px-6 pt-10 pb-1">
+                    <ModeTabs
+                        mainTab={mainTab}
+                        onChange={handleMainTabChange}
+                        user={user}
                     />
-                )}
 
-                <SearchBar
-                    value={searchTerm}
-                    onChange={setSearchTerm}
-                    placeholder={`Search ${activeTabLabel}...`}
-                />
+                    <TabRow
+                        tabs={activeTabs}
+                        activeTab={activeTab}
+                        onChange={(key) => {
+                            if (mainTab === "catalog") setCatalogTab(key);
+                            else setLibraryTab(key);
+                        }}
+                    />
 
+                    {mainTab === "catalog" &&
+                        activeTab === "official-setups" && (
+                            <SubTags
+                                activeSubTag={activeSubTag}
+                                onChange={setActiveSubTag}
+                            />
+                        )}
+
+                    <SearchBar
+                        value={searchTerm}
+                        onChange={setSearchTerm}
+                        placeholder={`Search ${activeTabLabel}...`}
+                    />
+                </div>
+            </div>
+
+            <div className="mx-auto max-w-7xl px-6 py-1">
                 {mainTab === "catalog" ? (
                     <CatalogPanel
                         activeTab={activeTab}

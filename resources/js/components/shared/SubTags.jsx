@@ -7,7 +7,7 @@ export default function SubTags({ activeSubTag, onChange }) {
                     key={tag}
                     type="button"
                     onClick={() => onChange(tag)}
-                    className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+                    className={`rounded-full border px-3 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium transition ${
                         activeSubTag === tag
                             ? "border-cyan-400 bg-cyan-400/10 text-cyan-300"
                             : "border-slate-700 text-slate-400 hover:border-slate-500"
