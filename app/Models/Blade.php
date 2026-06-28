@@ -14,6 +14,7 @@ class Blade extends Model
 
     protected $fillable = [
         'name',
+        'chinese_name',
         'img_url',
         'color',
     ];

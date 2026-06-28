@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('blades', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('chinese_name')->nullable();
             $table->string('img_url')->nullable();
             $table->string('color')->nullable();
             $table->timestamps();

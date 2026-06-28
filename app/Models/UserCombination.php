@@ -20,6 +20,7 @@ class UserCombination extends Model
     protected $fillable = [
         'user_id',
         'name',
+        'chinese_name',
         'type',
         'blade_id',
         'ratchet_id',
