@@ -3,7 +3,7 @@ export default function Navbar({ user, onLogin, onLogout }) {
         <nav className="border-b border-slate-800 bg-slate-950 px-6 py-4">
             <div className="mx-auto flex max-w-7xl items-center justify-between">
                 <p className="text-sm uppercase tracking-[0.3em] text-cyan-300">
-                    Beyblade DB
+                    BeybladeX Cat
                 </p>
 
                 {user ? (
