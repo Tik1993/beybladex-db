@@ -1,6 +1,6 @@
 export default function TabRow({ tabs, activeTab, onChange }) {
     return (
-        <div className="mb-6 flex flex-wrap gap-2">
+        <div className="mb-2 flex flex-nowrap overflow-x-auto gap-2 pb-2 no-scrollbar">
             {tabs.map((tab) => (
                 <button
                     key={tab.key}
