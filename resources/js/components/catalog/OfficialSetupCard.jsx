@@ -1,7 +1,30 @@
 import PartSlot from "../shared/PartSlot";
 import SectionTitle from "../shared/SectionTitle";
 
-export default function OfficialSetupCard({ setup }) {
+export default function OfficialSetupCard({ setup, onClick, compact = false }) {
+    if (compact) {
+        return (
+            <div
+                onClick={onClick}
+                className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-cyan-400 transition"
+            >
+                <p className="px-3 pb-3 text-sm font-medium text-white break-words">
+                    {setup.name}
+                </p>
+                {setup.image_url ? (
+                    <img
+                        src={setup.image_url}
+                        alt={setup.name}
+                        className="h-24 sm:h-32 md:h-40 w-full object-contain p-3"
+                    />
+                ) : (
+                    <div className="flex h-24 sm:h-32 md:h-40 items-center justify-center text-sm text-slate-500">
+                        No image
+                    </div>
+                )}
+            </div>
+        );
+    }
     const isCX = setup.type === "CX";
 
     const components = isCX
