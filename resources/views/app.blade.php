@@ -17,6 +17,8 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Beyblade X Cat">
     <meta name="twitter:description" content="Browse Beyblade X official setups, parts, and user collections in one place.">
+    
+    <link rel="icon" type="image/png" href="/favicon.png">
 
     @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.jsx'])
