@@ -245,7 +245,7 @@ export default function Main({ user, setUser }) {
                     onLogin={() => setShowLogin(true)}
                     onLogout={handleLogout}
                 />
-                <div className="mx-auto max-w-7xl px-6 pt-10 pb-1">
+                <div className="mx-auto max-w-7xl px-6 pt-3">
                     <ModeTabs
                         mainTab={mainTab}
                         onChange={handleMainTabChange}

@@ -1,6 +1,6 @@
 export default function SearchBar({ value, onChange, placeholder }) {
     return (
-        <div className="mb-6">
+        <div className="mb-2 md:mb-4">
             <input
                 type="text"
                 value={value}
