@@ -78,11 +78,11 @@ export default function CatalogPartCard({
                     )}
                 </div>
 
-                {item?.color && (
+                {/* {item?.color && (
                     <p className="mt-1 text-sm text-slate-400">
                         Color: {item.color}
                     </p>
-                )}
+                )} */}
 
                 {user && (
                     <div className="mt-4">

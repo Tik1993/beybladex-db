@@ -16,9 +16,9 @@ export default function PartSlot({ title, item }) {
                     <p className="mt-0.5 font-semibold text-white">
                         {item?.short_name || item?.name || "Not set"}
                     </p>
-                    {item?.color && (
+                    {/* {item?.color && (
                         <p className="text-xs text-slate-500">{item.color}</p>
-                    )}
+                    )} */}
                 </div>
 
                 <div className="flex shrink-0 items-center gap-2">
