@@ -137,9 +137,9 @@ export default function CatalogPanel({
                                         record,
                                         activeTab,
                                     );
-                                    return part?.id === item.id;
+                                    return part?.id === selectedSetup.id;
                                 })}
-                                onAdd={() => onAdd(activeTab, item.id)}
+                                onAdd={() => onAdd(activeTab, selectedSetup.id)}
                                 onRemove={(ownedId) =>
                                     onRemove(activeTab, ownedId)
                                 }
