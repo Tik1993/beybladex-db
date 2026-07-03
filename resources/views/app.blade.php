@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Beyblade X Cat — Beyblade X Database, Parts & Combo Builder</title>
-    <meta name="description" content="The most complete Beyblade X database. Browse official setups, build custom combos, and track your parts collection. Covers BX, UX and CX series.">
+    <meta name="description" content="The most complete unofficial Beyblade X database. Browse official setups, build custom combos, and track your parts collection. Covers BX, UX and CX series.">
     <meta name="keywords" content="Beyblade X, BX, UX, CX, official setups, combo builder, parts database, beyblade database">
     <link rel="canonical" href="https://www.beybladexcat.com/">
     

@@ -25,6 +25,7 @@ import SearchBar from "./shared/SearchBar";
 import CatalogPanel from "./catalog/CatalogPanel";
 import LibraryPanel from "./library/LibraryPanel";
 import Combos from "./library/Combos";
+import Footer from "./shared/Footer";
 
 export default function Main({ user, setUser }) {
     const [showLogin, setShowLogin] = useState(false);
@@ -307,6 +308,7 @@ export default function Main({ user, setUser }) {
                     ))
                 )}
             </div>
+            <Footer />
         </div>
     );
 }

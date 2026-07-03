@@ -9,7 +9,7 @@ export default function Navbar({ user, onLogin, onLogout }) {
                         className="h-8 w-8 object-contain"
                     />
                     <p className="text-sm uppercase tracking-[0.3em] text-cyan-300">
-                        BeybladeX Cat
+                        Beyblade X Cat
                     </p>
                 </div>
 
