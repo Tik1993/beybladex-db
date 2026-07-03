@@ -1,3 +1,4 @@
+import PartCard from "../shared/PartCard";
 export default function LibraryPanel({ activeTab, user, items, onRemove }) {
     if (!user) {
         return (
