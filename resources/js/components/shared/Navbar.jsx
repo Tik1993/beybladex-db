@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 export default function Navbar({ user, onLogin, onLogout }) {
+    const navigate = useNavigate();
     return (
         <nav className="border-b border-slate-800 bg-slate-950 px-6 py-4">
             <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -13,28 +15,36 @@ export default function Navbar({ user, onLogin, onLogout }) {
                     </p>
                 </div>
 
-                {user ? (
-                    <div className="flex items-center gap-4">
-                        <span className="text-sm text-slate-300">
-                            {user.name}
-                        </span>
+                <div className="flex items-center gap-4">
+                    <button
+                        onClick={() => navigate("/about")}
+                        className="text-sm text-slate-400 hover:text-white transition"
+                    >
+                        About
+                    </button>
+                    {user ? (
+                        <div className="flex items-center gap-4">
+                            <span className="text-sm text-slate-300">
+                                {user.name}
+                            </span>
+                            <button
+                                type="button"
+                                onClick={onLogout}
+                                className="rounded-full border border-slate-700 px-4 py-1.5 text-sm text-slate-400 transition hover:border-slate-500"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    ) : (
                         <button
                             type="button"
-                            onClick={onLogout}
+                            onClick={onLogin}
                             className="rounded-full border border-slate-700 px-4 py-1.5 text-sm text-slate-400 transition hover:border-slate-500"
                         >
-                            Logout
+                            Login
                         </button>
-                    </div>
-                ) : (
-                    <button
-                        type="button"
-                        onClick={onLogin}
-                        className="rounded-full border border-slate-700 px-4 py-1.5 text-sm text-slate-400 transition hover:border-slate-500"
-                    >
-                        Login
-                    </button>
-                )}
+                    )}
+                </div>
             </div>
         </nav>
     );

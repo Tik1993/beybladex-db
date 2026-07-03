@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./components/main";
+import About from "./components/About";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -32,7 +34,17 @@ function App() {
         );
     }
 
-    return <Main user={user} setUser={setUser} />;
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<Main user={user} setUser={setUser} />}
+                />
+                <Route path="/about" element={<About />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 ReactDOM.createRoot(document.getElementById("app")).render(
