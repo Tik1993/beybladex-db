@@ -41,6 +41,7 @@ use App\Models\OfficialSetup;
 Route::get('/sitemap.xml', function () {
     return Sitemap::create()
         ->add(Url::create('/')->setPriority(1.0))
+        ->add(Url::create('/about')->setPriority(0.8))
         ->toResponse(request());
 });
 
