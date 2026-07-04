@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Ratchet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class RatchetController extends Controller
 {
     public function index()
     {
         return response()->json(
-            Ratchet::with(
-                ['officialSetups']
-            )->get()
+            Cache::remember('ratchets',86400, function(){
+                return Ratchet::with(
+                    ['officialSetups']
+                )->get()->toArray();
+            })
         );
     }
 

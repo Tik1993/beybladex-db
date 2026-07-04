@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\CxOverBlade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CxOverBladeController extends Controller
 {
     public function index()
     {
         return response()->json(
-            CxOverBlade::with(
-                ['officialSetups']
-            )->get()
+            Cache::remember('cxoverblades',86400, function(){
+                return CxOverBlade::with(
+                    ['officialSetups']
+                )->get()->toArray();
+            })
         );
     }
 

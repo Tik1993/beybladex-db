@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Bit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class BitController extends Controller
 {
     public function index()
     {
         return response()->json(
-            Bit::with(
-                ['officialSetups']
-            )->get()
+            Cache::remember('bits',86400, function(){
+                return Bit::with(
+                    ['officialSetups']
+                )->get()->toArray();
+            })
         );
     }
 

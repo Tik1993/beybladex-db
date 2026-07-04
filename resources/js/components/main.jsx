@@ -112,7 +112,10 @@ export default function Main({ user, setUser }) {
                 if (!res.ok) throw new Error(`Failed to fetch ${tab.label}`);
                 return res.json();
             })
-            .then((json) => setData((prev) => ({ ...prev, [activeTab]: json })))
+            .then((json) => {
+                setData((prev) => ({ ...prev, [activeTab]: json }));
+            })
+
             .catch((err) =>
                 setError((prev) => ({ ...prev, [activeTab]: err.message })),
             )
@@ -180,7 +183,6 @@ export default function Main({ user, setUser }) {
 
         const term = deferredSearch.trim().toLowerCase();
         const rawData = data[activeTab] ?? [];
-
         return rawData.filter((item) => {
             if (activeTab === "official-setups" && activeSubTag !== "All") {
                 if (item.type !== activeSubTag) return false;

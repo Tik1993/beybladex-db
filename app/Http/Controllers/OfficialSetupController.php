@@ -13,22 +13,26 @@ use App\Models\Ratchet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\Rule;
+
 
 class OfficialSetupController extends Controller
 {
     public function index()
     {
         return response()->json(
-            OfficialSetup::with([
-                'blade',
-                'ratchet',
-                'bit',
-                'cxLockChip',
-                'cxOverBlade',
-                'cxMetalBlade',
-                'cxAuxiliaryBlade',
-            ])->get()
+            Cache::remember('official-setups',86400, function(){
+                return OfficialSetup::with([
+                    'blade',
+                    'ratchet',
+                    'bit',
+                    'cxLockChip',
+                    'cxOverBlade',
+                    'cxMetalBlade',
+                    'cxAuxiliaryBlade',
+                ])->get()->toArray();
+            })
         );
     }
 

@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\CxMetalBlade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CxMetalBladeController extends Controller
 {
     public function index()
     {
         return response()->json(
-            CxMetalBlade::with(
-                ['officialSetups']
-            )->get()
+            Cache::remember('cxmetalblades',86400, function(){
+                return CxMetalBlade::with(
+                    ['officialSetups']
+                )->get()->toArray();
+            })
         );
     }
 

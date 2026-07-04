@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\CxLockChip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CxLockChipController extends Controller
 {
     public function index()
     {
         return response()->json(
-            CxLockChip::with(
-                ['officialSetups']
-            )->get()
+            Cache::remember('cxlockchips',86400, function(){
+                return CxLockChip::with(
+                    ['officialSetups']
+                )->get()->toArray();
+            })
         );
     }
 

@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Blade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class BladeController extends Controller
 {
     public function index()
     {
         return response()->json(
-            Blade::with(
-                ['officialSetups']
-            )->get()
+            Cache::remember('blades',86400, function(){
+                return Blade::with(
+                    ['officialSetups']
+                )->get()->toArray();
+            })
+
         );
     }
 

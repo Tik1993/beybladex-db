@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\CxAuxiliaryBlade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CxAuxiliaryBladeController extends Controller
 {
     public function index()
     {
         return response()->json(
-            CxAuxiliaryBlade::with(
-                ['officialSetups']
-            )->get()
+            Cache::remember('cxauxiliaryblades',86400, function(){
+                return CxAuxiliaryBlade::with(
+                    ['officialSetups']
+                )->get()->toArray();
+            })
         );
     }
 
