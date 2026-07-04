@@ -52,8 +52,11 @@ export default function Main({ user, setUser }) {
     useEffect(() => {
         if (!user) {
             setCollection(createEmptyCollection());
+            setCombos([]);
             return;
         }
+
+        if (mainTab !== "library") return;
 
         const endpoints = PART_TABS.map((tab) => ({
             key: tab.key,
@@ -95,7 +98,7 @@ export default function Main({ user, setUser }) {
         })
             .then((res) => res.json())
             .then((data) => setCombos(data));
-    }, [user]);
+    }, [user, mainTab]);
 
     useEffect(() => {
         if (mainTab !== "catalog") return;
