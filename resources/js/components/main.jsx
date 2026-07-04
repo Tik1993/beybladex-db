@@ -283,7 +283,15 @@ export default function Main({ user, setUser }) {
                 </div>
             </div>
 
-            <div className="mx-auto max-w-7xl px-6 py-1">
+            <main className="mx-auto max-w-7xl px-6 py-1">
+                <header className="mt-8 mb-2">
+                    <h1 className="text-xl md:text-3xl font-bold text-white">
+                        Unofficial Beyblade X Database
+                    </h1>
+                    <p className="mt-2 text-slate-300 text-xs md:text-m">
+                        Browse parts, setups, and collections.
+                    </p>
+                </header>
                 {mainTab === "catalog" ? (
                     <CatalogPanel
                         activeTab={activeTab}
@@ -312,7 +320,7 @@ export default function Main({ user, setUser }) {
                         />
                     ))
                 )}
-            </div>
+            </main>
             <Footer />
         </div>
     );

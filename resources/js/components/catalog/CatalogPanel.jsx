@@ -66,7 +66,6 @@ export default function CatalogPanel({
                     ))}
                 </div>
             </div>
-
             {items.length === 0 ? (
                 <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 text-slate-300">
                     No results found.
