@@ -16,8 +16,8 @@ export default function CatalogPartCard({
                 onClick={onClick}
                 className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-cyan-400 transition"
             >
-                <p className="px-3 pb-3 text-sm font-medium text-white break-words">
-                    {item.name}
+                <p className="px-3 pb-3 text-sm md:text-lg font-medium text-white break-words">
+                    {item?.short_name || item?.name}
                 </p>
                 {item.img_url ? (
                     <img
